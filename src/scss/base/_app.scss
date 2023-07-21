@@ -1,0 +1,12 @@
+.main-container{
+    position: relative;
+    max-width: 100vw;
+    overflow:hidden;
+    height: 100vh;
+}
+.app{
+    z-index: 1;
+    background:rgba(4,6,20,0.85);
+    height:100vh ;
+    width: 100vw;
+}
