@@ -17,7 +17,8 @@ function Search() {
   useEffect(() => {
     if(allPokemon){
       const clonedPokemons = [...allPokemon];
-      const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
+      // const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
+      const randomPokemonsId = clonedPokemons.slice(649,663 | 720);
       dispatch(getPokemonsData(randomPokemonsId));
       // console.log(randomPokemonsId);
     }
