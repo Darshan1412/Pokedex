@@ -18,7 +18,8 @@ function Search() {
     if(allPokemon){
       const clonedPokemons = [...allPokemon];
       // const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
-      const randomPokemonsId = clonedPokemons.slice(649,663 | 720);
+      // const randomPokemonsId = clonedPokemons.slice(649,663 | 705);
+      const randomPokemonsId = clonedPokemons.slice(0,40);
       dispatch(getPokemonsData(randomPokemonsId));
       // console.log(randomPokemonsId);
     }
@@ -31,7 +32,5 @@ function Search() {
   </div>
   </> 
 }
-
-
 
 export default Wrapper(Search);
