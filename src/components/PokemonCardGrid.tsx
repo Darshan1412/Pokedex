@@ -2,14 +2,15 @@ import React from "react";
 import { IoGitCompare } from "react-icons/io5"
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { pokemonTypeInterface, userPokemonsType } from "../utils/Types";
-import { useLocation } from "react-router-dom";
+import * as reactRouterDom from "react-router-dom";
 
+ 
 function PokemonCardGrid({ pokemons }: { pokemons: userPokemonsType[] }) {
   return <div className="pokemon-card-grid-container">
     <div className="pokemon-card-grid">
         {
             pokemons && pokemons.length>0 && pokemons?.map((data: userPokemonsType)=>{
-              const location  = useLocation();
+              const location  = reactRouterDom.useLocation();
                 return ( 
                 <div className="pokemon-card" key={ data.id }>
                     <div className="pokemon-card-list">

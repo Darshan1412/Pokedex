@@ -20,5 +20,15 @@
         border: 0.5px solid rgba(255,255,255,0.203);
         border-top: none;
         border-bottom: none;
+        background-color: rgba(255,255,255,0.052);
+        overflow: hidden;
     };
+}
+
+::-webkit-scrollbar{
+    background-color:transparent;
+    width: 0.4rem;
+    &-thumb{
+        background-color: rgba(219,219,219,0.557);
+    }
 }
