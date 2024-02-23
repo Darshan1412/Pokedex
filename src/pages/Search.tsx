@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../sections/Wrapper";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getInitialPokemonData } from "../app/reducers/getInitialPokemonData";
@@ -11,24 +11,58 @@ import { debounce } from "../utils/Debounce";
 function Search() {
   const dispatch = useAppDispatch();
   const { allPokemon,randomPokemons} = useAppSelector(({pokemon})=>pokemon);
+  const [generation, setGeneration] = useState("All");
   useEffect(() => {
     dispatch(getInitialPokemonData());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   if(allPokemon){
+  //     const clonedPokemons = [...allPokemon];
+  //     // const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
+  //     // const randomPokemonsId = clonedPokemons.slice(649,663 | 705);
+  //     const randomPokemonsId = clonedPokemons.slice(0,40);
+  //     dispatch(getPokemonsData(randomPokemonsId));
+  //     // console.log(randomPokemonsId);
+  //   }
+  // }, [allPokemon, dispatch]);
+
   useEffect(() => {
-    if(allPokemon){
+    if (allPokemon) {
       const clonedPokemons = [...allPokemon];
-      // const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
-      // const randomPokemonsId = clonedPokemons.slice(649,663 | 705);
-      const randomPokemonsId = clonedPokemons.slice(0,40);
+      let randomPokemonsId;
+
+
+      if (generation === "Gen1") {
+        randomPokemonsId = clonedPokemons.slice(0, 151);
+      } else if (generation === "Gen2") {
+        randomPokemonsId = clonedPokemons.slice(151, 252);
+      } else if (generation === "Gen3") {
+        randomPokemonsId = clonedPokemons.slice(251, 386);
+      } else if (generation === "Gen4") {
+        randomPokemonsId = clonedPokemons.slice(386, 493);
+      } else if (generation === "Gen5") {
+        randomPokemonsId = clonedPokemons.slice(493, 649);
+      } else if (generation === "Gen6") {
+        randomPokemonsId = clonedPokemons.slice(649, 721);
+      } else if (generation === "Gen7") {
+        randomPokemonsId = clonedPokemons.slice(721, 809);
+      } else if (generation === "Gen8") {
+        randomPokemonsId = clonedPokemons.slice(809, 905);
+      } else if (generation === "Gen9") {
+        randomPokemonsId = clonedPokemons.slice(905, 1025);
+      } else {
+        randomPokemonsId = clonedPokemons.slice(0, 40);
+      }
+
       dispatch(getPokemonsData(randomPokemonsId));
-      // console.log(randomPokemonsId);
     }
-  }, [allPokemon, dispatch]);
+  }, [allPokemon, dispatch, generation]);
 
-  const handleChange = debounce((value:string) => getPOkemons(value), 300);
+  // const handleChange = debounce((value:string) => getPokemons(value), 300);
+  const handleChange = debounce((value:string) => getPokemons(value), 100);
 
-  const getPOkemons = async(value:string) => {
+  const getPokemons = async(value:string) => {
     if(value.length){
       const pokemons = allPokemon?.filter((pokemon) => 
       pokemon.name.includes(value.toLowerCase())
@@ -48,6 +82,22 @@ function Search() {
     placeholder="Search Pokemon"
     onChange={(e) => handleChange(e.target.value)}
     />
+     <select
+          className="generation-dropdown"
+          value={generation}
+          onChange={(e) => setGeneration(e.target.value)}
+        >
+          <option value="All">Filter by Generation</option>
+          <option value="Gen1">Generation 1</option>
+          <option value="Gen2">Generation 2</option>
+          <option value="Gen3">Generation 3</option>
+          <option value="Gen4">Generation 4</option>
+          <option value="Gen5">Generation 5</option>
+          <option value="Gen6">Generation 6</option>
+          <option value="Gen7">Generation 7</option>
+          <option value="Gen8">Generation 8</option>
+          <option value="Gen9">Generation 9</option>
+        </select>
     <PokemonCardGrid pokemons={randomPokemons!} />
   </div>
   </> 

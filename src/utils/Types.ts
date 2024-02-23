@@ -14,6 +14,7 @@ export interface generatedPokemonType {
     name: string;
     id: number;
     image: string;
+    spriteImage: string;
     types: pokemonTypeInterface[];
 }
 
