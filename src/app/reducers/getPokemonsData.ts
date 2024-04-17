@@ -6,36 +6,43 @@ export const getPokemonsData = createAsyncThunk(
   "pokemon/randomPokemon",
   async (pokemons: genericPokemonType[]) => {
     try {
-      const pokemonsData: generatedPokemonType[] = [];
-      for await (const pokemon of pokemons) {
-        const { data }: { data: generatedPokemonType } = await axios.get(pokemon.url);
-        
-        const imageResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${data.id}`);
-        const image = imageResponse.data.sprites.other["official-artwork"].front_default;
-        const spriteImage = imageResponse.data.sprites.front_default;
+      const pokemonRequests = pokemons.map(async (pokemon: genericPokemonType) => {
+        const { data: generatedPokemon }: { data: generatedPokemonType } = await axios.get(pokemon.url);
+        const { data: pokemonDetails } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${generatedPokemon.id}`);
 
+        const image = pokemonDetails.sprites.other["official-artwork"].front_default;
+        const spriteImage = pokemonDetails.sprites.front_default;
 
-        const types = data.types.map(
-          ({ type: { name } }: { type: { name: string } }) => ({
-            //@ts-expect-error
-            [name]: pokemonTypes[name],
-          })
-        );
-        
-        pokemonsData.push({
-          name: data.name,
-          id: data.id,
+        const types = generatedPokemon.types.map(({ type: { name } }: { type: { name: string } }) => ({
+          //@ts-expect-error
+          [name]: pokemonTypes[name],
+        }));
+
+        return {
+          name: generatedPokemon.name,
+          id: generatedPokemon.id,
           image,
           spriteImage,
           types,
-        });
-      }
+        };
+      });
+
+      const pokemonsData = await Promise.all(pokemonRequests);
       return pokemonsData;
     } catch (err) {
       console.error(err);
+      throw err;
     }
   }
-);
+); 
 
-type genericPokemonType = any; 
-type generatedPokemonType = any; 
+interface genericPokemonType {
+  url: string;
+}
+
+interface generatedPokemonType {
+  name: string;
+  id: number;
+  types: { type: { name: string } }[];
+}
+

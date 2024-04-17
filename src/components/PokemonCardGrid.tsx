@@ -2,15 +2,20 @@ import React from "react";
 import { IoGitCompare } from "react-icons/io5"
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { pokemonTypeInterface, userPokemonsType } from "../utils/Types";
-import * as reactRouterDom from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { addToCompare } from "../app/slices/PokemonSlice";
+import { setToast } from "../app/slices/AppSlice";
 
  
 function PokemonCardGrid({ pokemons }: { pokemons: userPokemonsType[] }) {
-  return <div className="pokemon-card-grid-container">
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  
+  return( <div className="pokemon-card-grid-container">
     <div className="pokemon-card-grid">
         {
             pokemons && pokemons.length>0 && pokemons?.map((data: userPokemonsType)=>{
-              const location  = reactRouterDom.useLocation();
                 return ( 
                 <div className="pokemon-card" key={ data.id }>
                     <div className="pokemon-card-list">
@@ -29,21 +34,23 @@ function PokemonCardGrid({ pokemons }: { pokemons: userPokemonsType[] }) {
                   )}
                     </div>
                     <div className="pokemon-card-compare">
-                      <IoGitCompare />
+                      <IoGitCompare 
+                      onClick={() => {dispatch(addToCompare(data))
+                      dispatch(setToast(`${data.name} has been added to compare queue.`))}}/>
                     </div>
                     <h3 className="pokemon-card-title">{data.name}</h3>
-                {/* <img
+                <img
                   src={data.image}
                   alt=""
                   className="pokemon-card-image"
                   loading="lazy"  
-                /> */}
-                 <img
+                />
+                 {/* <img
                   src={data.spriteImage}
                   alt=""
                   className="pokemon-card-image"
                   loading="lazy"
-                />
+                /> */}
                 <div className="pokemon-card-types">
                   {data.types.map(
                     (type: pokemonTypeInterface, index: number) => {
@@ -69,7 +76,7 @@ function PokemonCardGrid({ pokemons }: { pokemons: userPokemonsType[] }) {
           })}
       </div>
     </div>
-
+  )
 }
 
 export default PokemonCardGrid

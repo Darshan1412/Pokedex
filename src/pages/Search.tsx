@@ -10,7 +10,7 @@ import { debounce } from "../utils/Debounce";
 
 function Search() {
   const dispatch = useAppDispatch();
-  const { allPokemon,randomPokemons} = useAppSelector(({pokemon})=>pokemon);
+  const { allPokemon, randomPokemons } = useAppSelector(({ pokemon }) => pokemon);
   const [generation, setGeneration] = useState("All");
   useEffect(() => {
     dispatch(getInitialPokemonData());
@@ -59,48 +59,48 @@ function Search() {
     }
   }, [allPokemon, dispatch, generation]);
 
-  // const handleChange = debounce((value:string) => getPokemons(value), 300);
-  const handleChange = debounce((value:string) => getPokemons(value), 100);
+  const handleChange = debounce((value:string) => getPokemons(value), 300);
+  // const handleChange = (value: string) => getPokemons(value);
 
-  const getPokemons = async(value:string) => {
-    if(value.length){
-      const pokemons = allPokemon?.filter((pokemon) => 
-      pokemon.name.includes(value.toLowerCase())
+  const getPokemons = async (value: string) => {
+    if (value.length) {
+      const pokemons = allPokemon?.filter((pokemon) =>
+        pokemon.name.includes(value.toLowerCase())
       );
       dispatch(getPokemonsData(pokemons!));
-    } else{
+    } else {
       const clonedPokemons = [...(allPokemon as [])];
-      const randomPokemonsId = clonedPokemons.slice(0,40);
+      const randomPokemonsId = clonedPokemons.slice(0, 40);
       dispatch(getPokemonsData(randomPokemonsId));
     }
   }
 
   return <>
-  <div className="search">
-    <input type="text" 
-    className="pokemon-searchbar" 
-    placeholder="Search Pokemon"
-    onChange={(e) => handleChange(e.target.value)}
-    />
-     <select
-          className="generation-dropdown"
-          value={generation}
-          onChange={(e) => setGeneration(e.target.value)}
-        >
-          <option value="All">Filter by Generation</option>
-          <option value="Gen1">Generation 1</option>
-          <option value="Gen2">Generation 2</option>
-          <option value="Gen3">Generation 3</option>
-          <option value="Gen4">Generation 4</option>
-          <option value="Gen5">Generation 5</option>
-          <option value="Gen6">Generation 6</option>
-          <option value="Gen7">Generation 7</option>
-          <option value="Gen8">Generation 8</option>
-          <option value="Gen9">Generation 9</option>
-        </select>
-    <PokemonCardGrid pokemons={randomPokemons!} />
-  </div>
-  </> 
+    <div className="search">
+      <input type="text"
+        className="pokemon-searchbar"
+        placeholder="Search Pokemon"
+        onChange={(e) => handleChange(e.target.value)}
+      />
+      <select
+        className="generation-dropdown"
+        value={generation}
+        onChange={(e) => setGeneration(e.target.value)}
+      >
+        <option value="All">Filter by Generation</option>
+        <option value="Gen1">Generation 1</option>
+        <option value="Gen2">Generation 2</option>
+        <option value="Gen3">Generation 3</option>
+        <option value="Gen4">Generation 4</option>
+        <option value="Gen5">Generation 5</option>
+        <option value="Gen6">Generation 6</option>
+        <option value="Gen7">Generation 7</option>
+        <option value="Gen8">Generation 8</option>
+        <option value="Gen9">Generation 9</option>
+      </select>
+      <PokemonCardGrid pokemons={randomPokemons!} />
+    </div>
+  </>
 }
 
 export default Wrapper(Search);
