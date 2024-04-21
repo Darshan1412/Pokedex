@@ -39,18 +39,18 @@ function PokemonCardGrid({ pokemons }: { pokemons: userPokemonsType[] }) {
                       dispatch(setToast(`${data.name} has been added to compare queue.`))}}/>
                     </div>
                     <h3 className="pokemon-card-title">{data.name}</h3>
-                <img
+                {/* <img
                   src={data.image}
                   alt=""
                   className="pokemon-card-image"
                   loading="lazy"  
-                />
-                 {/* <img
+                /> */}
+                 <img
                   src={data.spriteImage}
                   alt=""
                   className="pokemon-card-image"
                   loading="lazy"
-                /> */}
+                />
                 <div className="pokemon-card-types">
                   {data.types.map(
                     (type: pokemonTypeInterface, index: number) => {

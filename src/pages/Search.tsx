@@ -52,7 +52,7 @@ function Search() {
       } else if (generation === "Gen9") {
         randomPokemonsId = clonedPokemons.slice(905, 1025);
       } else {
-        randomPokemonsId = clonedPokemons.slice(0, 40);
+        randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
       }
 
       dispatch(getPokemonsData(randomPokemonsId));
@@ -70,7 +70,8 @@ function Search() {
       dispatch(getPokemonsData(pokemons!));
     } else {
       const clonedPokemons = [...(allPokemon as [])];
-      const randomPokemonsId = clonedPokemons.slice(0, 40);
+      // const randomPokemonsId = clonedPokemons.slice(0, 40);
+      const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
       dispatch(getPokemonsData(randomPokemonsId));
     }
   }
