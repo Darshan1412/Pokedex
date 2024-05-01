@@ -52,7 +52,7 @@ function Search() {
       } else if (generation === "Gen9") {
         randomPokemonsId = clonedPokemons.slice(905, 1025);
       } else {
-        randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
+        randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 30);
       }
 
       dispatch(getPokemonsData(randomPokemonsId));
@@ -71,7 +71,7 @@ function Search() {
     } else {
       const clonedPokemons = [...(allPokemon as [])];
       // const randomPokemonsId = clonedPokemons.slice(0, 40);
-      const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 20);
+      const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 30);
       dispatch(getPokemonsData(randomPokemonsId));
     }
   }
@@ -89,15 +89,15 @@ function Search() {
         onChange={(e) => setGeneration(e.target.value)}
       >
         <option value="All">Filter by Generation</option>
-        <option value="Gen1">Generation 1</option>
-        <option value="Gen2">Generation 2</option>
-        <option value="Gen3">Generation 3</option>
-        <option value="Gen4">Generation 4</option>
-        <option value="Gen5">Generation 5</option>
-        <option value="Gen6">Generation 6</option>
-        <option value="Gen7">Generation 7</option>
-        <option value="Gen8">Generation 8</option>
-        <option value="Gen9">Generation 9</option>
+        <option value="Gen1">Generation 1 (Kanto)</option>
+        <option value="Gen2">Generation 2 (Johto)</option>
+        <option value="Gen3">Generation 3 (Hoenn)</option>
+        <option value="Gen4">Generation 4 (Sinnoh)</option>
+        <option value="Gen5">Generation 5 (Unova)</option>
+        <option value="Gen6">Generation 6 (Kalos)</option>
+        <option value="Gen7">Generation 7 (Alola)</option>
+        <option value="Gen8">Generation 8 (Galar)</option>
+        <option value="Gen9">Generation 9 (Paldea)</option>
       </select>
       <PokemonCardGrid pokemons={randomPokemons!} />
     </div>

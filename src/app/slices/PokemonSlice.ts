@@ -2,11 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { PokemonTypeInitialState , generatedPokemonType } from "../../utils/Types";
 import { getInitialPokemonData } from "../reducers/getInitialPokemonData";
 import { getPokemonsData } from "../reducers/getPokemonsData";
+import { getUserPokemons } from "../reducers/getUserPokemons";
+import { removePokemon } from "../reducers/removePokemonFromUserList";
 
 const initialState: PokemonTypeInitialState = {
   allPokemon: undefined,
   randomPokemons: undefined,
   compareQueue: [],
+  userPokemons: [],
 };
 
 export const PokemonSlice = createSlice({
@@ -40,7 +43,18 @@ export const PokemonSlice = createSlice({
     builder.addCase(getPokemonsData.fulfilled, (state, action) => {
       state.randomPokemons = action.payload;
     });
-  },
+    builder.addCase(getUserPokemons.fulfilled, (state, action) => {
+      state.userPokemons = action.payload!;
+    })
+    builder.addCase(removePokemon.fulfilled, (state, action) => {
+      const userPokemon  = [...state.userPokemons];
+      const index = userPokemon.findIndex(
+        (pokemon) => pokemon.firebaseId === action.payload?.id
+      );
+      userPokemon.splice(index,1);
+      state.userPokemons = userPokemon;
+    })
+  }
 });
 
 // eslint-disable-next-line no-empty-pattern
