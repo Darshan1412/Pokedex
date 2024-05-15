@@ -7,14 +7,26 @@ import { getPokemonsData } from "../app/reducers/getPokemonsData";
 import Pokemon from "./Pokemon";
 import PokemonCardGrid from "../components/PokemonCardGrid";
 import { debounce } from "../utils/Debounce";
+import Loader from "../components/Loader";
+import { setLoading } from "../app/slices/AppSlice";
 
 function Search() {
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(({ app: { isLoading } }) => isLoading);
   const { allPokemon, randomPokemons } = useAppSelector(({ pokemon }) => pokemon);
   const [generation, setGeneration] = useState("All");
   useEffect(() => {
     dispatch(getInitialPokemonData());
   }, [dispatch]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | undefined;
+  
+    if (allPokemon && randomPokemons) {
+      dispatch(setLoading(false));
+    };
+
+  }, [allPokemon, randomPokemons, dispatch]);
 
   // useEffect(() => {
   //   if(allPokemon){
@@ -31,7 +43,7 @@ function Search() {
     if (allPokemon) {
       const clonedPokemons = [...allPokemon];
       let randomPokemonsId;
-
+      dispatch(setLoading(true));
 
       if (generation === "Gen1") {
         randomPokemonsId = clonedPokemons.slice(0, 151);
@@ -71,12 +83,15 @@ function Search() {
     } else {
       const clonedPokemons = [...(allPokemon as [])];
       // const randomPokemonsId = clonedPokemons.slice(0, 40);
+      dispatch(setLoading(true));
       const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 30);
       dispatch(getPokemonsData(randomPokemonsId));
     }
   }
-
   return <>
+  {isLoading ? (
+        <Loader />
+      ) : (
     <div className="search">
       <input type="text"
         className="pokemon-searchbar"
@@ -89,18 +104,19 @@ function Search() {
         onChange={(e) => setGeneration(e.target.value)}
       >
         <option value="All">Filter by Generation</option>
-        <option value="Gen1">Generation 1 (Kanto)</option>
-        <option value="Gen2">Generation 2 (Johto)</option>
-        <option value="Gen3">Generation 3 (Hoenn)</option>
-        <option value="Gen4">Generation 4 (Sinnoh)</option>
-        <option value="Gen5">Generation 5 (Unova)</option>
-        <option value="Gen6">Generation 6 (Kalos)</option>
-        <option value="Gen7">Generation 7 (Alola)</option>
-        <option value="Gen8">Generation 8 (Galar)</option>
-        <option value="Gen9">Generation 9 (Paldea)</option>
+        <option value="Gen1">Gen 1 (Kanto Region)</option>
+        <option value="Gen2">Gen 2 (Johto Region)</option>
+        <option value="Gen3">Gen 3 (Hoenn Region)</option>
+        <option value="Gen4">Gen 4 (Sinnoh Region)</option>
+        <option value="Gen5">Gen 5 (Unova Region)</option>
+        <option value="Gen6">Gen 6 (Kalos Region)</option>
+        <option value="Gen7">Gen 7 (Alola Region)</option>
+        <option value="Gen8">Gen 8 (Galar Region)</option>
+        <option value="Gen9">Gen 9 (Paldea Region)</option>
       </select>
       <PokemonCardGrid pokemons={randomPokemons!} />
     </div>
+      )}
   </>
 }
 

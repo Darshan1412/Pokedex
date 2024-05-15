@@ -11,7 +11,9 @@ export const getPokemonsData = createAsyncThunk(
         const { data: pokemonDetails } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${generatedPokemon.id}`);
 
         const image = pokemonDetails.sprites.other["official-artwork"].front_default;
+        const shinyImage = pokemonDetails.sprites.other["official-artwork"].front_shiny;
         const spriteImage = pokemonDetails.sprites.front_default;
+        const spriteShinyImage = pokemonDetails.sprites.front_shiny;
 
         const types = generatedPokemon.types.map(({ type: { name } }: { type: { name: string } }) => ({
           //@ts-expect-error
@@ -23,6 +25,8 @@ export const getPokemonsData = createAsyncThunk(
           id: generatedPokemon.id,
           image,
           spriteImage,
+          shinyImage,
+          spriteShinyImage,
           types,
         };
       });

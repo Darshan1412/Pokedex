@@ -25,7 +25,9 @@ export const getUserPokemons = createAsyncThunk("pokemon/userList", async (args,
                 const pokemonDetailsResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonData.id}`);
                 const { sprites } = pokemonDetailsResponse.data;
                 const image = sprites.other["official-artwork"].front_default;
+                const shinyImage = sprites.other["official-artwork"].front_shiny;
                 const spriteImage = sprites.front_default;
+                const spriteShinyImage =sprites.front_shiny;
 
                 const types = pokemonData.types.map((name: string) => ({
                     //@ts-ignore
@@ -36,6 +38,8 @@ export const getUserPokemons = createAsyncThunk("pokemon/userList", async (args,
                     firebaseId: pokemon.id,
                     image,
                     spriteImage,
+                    shinyImage,
+                    spriteShinyImage,
                     types,
                 };
             });

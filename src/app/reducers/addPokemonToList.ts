@@ -5,7 +5,7 @@ import { setToast } from "../slices/AppSlice";
 import { resolveTypeReferenceDirective } from "typescript";
 import { addDoc } from "firebase/firestore";
 import { pokemonListRef } from "../../utils/firebaseConfig";
-import { poemonAPI } from "../../utils/Constants";
+import { pokemonAPI } from "../../utils/Constants";
 import { getUserPokemons } from "./getUserPokemons";
 
 export const addPokemonToList = createAsyncThunk("pokemon/addPoekmon",
@@ -44,7 +44,7 @@ export const addPokemonToList = createAsyncThunk("pokemon/addPoekmon",
             await dispatch(getUserPokemons());
             return dispatch(setToast(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} added to your collection.`))
         } else{
-            return dispatch(setToast(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} is already a part of your ollection.`))
+            return dispatch(setToast(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} is already a part of your collection.`))
         }
     } catch (err){
         console.log(err)

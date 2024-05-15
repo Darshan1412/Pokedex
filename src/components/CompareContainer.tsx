@@ -30,8 +30,6 @@ function CompareContainer({
     const statsSet = new Set<string>();
     types.forEach((type: pokemonTypeInterface) => {
       const key = Object.keys(type)[0];
-      console.log({ key });
-      console.log({ type });
       type[key][statType].forEach((stat: string) => {
         if (!statsSet.has(stat)) {
           statsArray.push({
@@ -47,15 +45,14 @@ function CompareContainer({
   };
 
   const getStats = () => {
-    const data = createStatsArray(pokemon?.types!, "strength");
     return (
       <>
         <div className="pokemon-types">
           <h4 className="pokemon-type-title">Strength</h4>
           <div className="pokemon-type-icons">
             {createStatsArray(pokemon?.types!, "strength").map(
-              (stat: { image: string }) => (
-                <div className="pokemon-type">
+              (stat: { image: string }, index: number) => (
+                <div key={index} className="pokemon-type">
                   <img src={stat.image} alt="" className="pokemon-type-image" />
                 </div>
               )
@@ -66,8 +63,8 @@ function CompareContainer({
           <h4 className="pokemon-type-title">Weakness</h4>
           <div className="pokemon-type-icons">
             {createStatsArray(pokemon?.types!, "weakness").map(
-              (stat: { image: string }) => (
-                <div className="pokemon-type">
+              (stat: { image: string }, index: number) => (
+                <div key={index} className="pokemon-type">
                   <img src={stat.image} alt="" className="pokemon-type-image" />
                 </div>
               )
@@ -78,8 +75,8 @@ function CompareContainer({
           <h4 className="pokemon-type-title">Resistance</h4>
           <div className="pokemon-type-icons">
             {createStatsArray(pokemon?.types!, "resistance").map(
-              (stat: { image: string }) => (
-                <div className="pokemon-type">
+              (stat: { image: string }, index: number) => (
+                <div key={index} className="pokemon-type">
                   <img src={stat.image} alt="" className="pokemon-type-image" />
                 </div>
               )
@@ -90,8 +87,8 @@ function CompareContainer({
           <h4 className="pokemon-type-title">Vulnerable</h4>
           <div className="pokemon-type-icons">
             {createStatsArray(pokemon?.types!, "vulnerable").map(
-              (stat: { image: string }) => (
-                <div className="pokemon-type">
+              (stat: { image: string }, index: number) => (
+                <div key={index} className="pokemon-type">
                   <img src={stat.image} alt="" className="pokemon-type-image" />
                 </div>
               )
@@ -106,7 +103,8 @@ function CompareContainer({
     <div className="compare-container">
       {isEmpty && (
         <div className="compare-container-empty">
-          <button>
+          <button onClick={() => {
+            navigate(`/search`)}}>
             <FaPlus />
           </button>
           <h3>No Pokemons Found to Compare</h3>
@@ -123,21 +121,21 @@ function CompareContainer({
                 className="compare-image"
                 loading="lazy"
               />
-              {/* <img
-                                    src={pokemon?.spriteImage}
-                                    alt="pokemon"
-                                    className="compare-image"
-                                    loading="lazy"
-                                /> */}
             </div>
+            {/* <img
+              src={pokemon?.spriteImage}
+              alt="pokemon"
+              className="compare-image"
+              loading="lazy"
+            /> */}
             <div className="pokemon-types-container">
               <div className="pokemon-types">
                 <h4 className="pokemon-type-title">Types</h4>
                 <div className="pokemon-type-icons">
-                  {pokemon?.types.map((type: pokemonTypeInterface) => {
+                  {pokemon?.types.map((type: pokemonTypeInterface, index: number) => {
                     const keys = Object.keys(type);
                     return (
-                      <div className="pokemon-type">
+                      <div key={index} className="pokemon-type">
                         <img
                           src={type[keys[0]].image}
                           alt="pokemon type"

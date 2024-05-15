@@ -15,7 +15,7 @@
     &-image {
       height: 15rem;
       border-radius: 10rem;
-      border: 0.3rem solid var(--accent-color);
+      border: 0.3rem solid var(--accent-color, white);
       padding: 1rem;
     }
     &-links {

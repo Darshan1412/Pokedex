@@ -20,7 +20,7 @@ function Navbar() {
         route: "/pokemon",
         },
         {
-        name: "My List",
+        name: "Favorites",
         route: "/list",
         },
         {

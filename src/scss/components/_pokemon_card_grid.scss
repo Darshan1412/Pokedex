@@ -52,6 +52,19 @@
         color: #1f51ff;
       }
     }
+    .image-toggle{
+      .angleLeft,
+      .angleRight {
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 4rem;
+        transition: font-size 0.3s ease-in-out;
+        &:hover {
+          font-size: 2rem;
+        }
+      }
+    }
     &-title {
       text-align: center;
       cursor: pointer;

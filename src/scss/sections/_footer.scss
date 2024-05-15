@@ -19,7 +19,30 @@ footer{
     }
     .data{
         border: 0.5px solid rgba(255,255,255,0.23);
-        // border-top: none;
-        // border-bottom: none;
+        border-top: none;
+        border-bottom: none;
+        ul{
+            display: grid;
+            color: white;
+            list-style-type: none;
+            grid-template-columns: repeat(4,1fr);
+            height: 100%;
+            li{
+                text-transform: uppercase;
+                font-weight: 500;
+                letter-spacing: 0.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: 0.4s ease-in-out;
+                &:hover{
+                    background-color: var(--accent-color);
+                }
+            }
+            .active{
+                background-color: var(--accent-color);
+            }
+        }
     }
 }
