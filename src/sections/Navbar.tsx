@@ -21,7 +21,7 @@ function Navbar() {
         },
         {
         name: "Favorites",
-        route: "/favorites",
+        route: "/Favorites",
         },
         {
         name: "About",
