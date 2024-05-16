@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PokemonTypeInitialState , generatedPokemonType } from "utils/Types";
-import { getInitialPokemonData } from "app/reducers/getInitialPokemonData";
+import { getInitialPokemonData } from "app/reducers/getInitialPokemonData.ts";
 import { getPokemonsData } from "app/reducers/getPokemonsData";
 import { getUserPokemons } from "app/reducers/getUserPokemons";
 import { removePokemon } from "app/reducers/removePokemonFromUserList";

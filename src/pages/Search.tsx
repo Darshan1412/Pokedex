@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "sections/Wrapper";
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import { getInitialPokemonData } from "app/reducers/getInitialPokemonData";
+import { getInitialPokemonData } from "app/reducers/getInitialPokemonData.ts";
 import { getPokemonsData } from "app/reducers/getPokemonsData";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Pokemon from "./Pokemon";
