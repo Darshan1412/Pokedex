@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build project
-        run: yarn run build
+        run: npm run build
       - name: Start project
-        run: yarn run start
+        run: npm start
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
