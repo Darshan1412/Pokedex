@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Wrapper from "../sections/Wrapper";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { getInitialPokemonData } from "../app/reducers/getInitialPokemonData";
-import { getPokemonsData } from "../app/reducers/getPokemonsData";
+import Wrapper from "sections/Wrapper";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { getInitialPokemonData } from "app/reducers/getInitialPokemonData";
+import { getPokemonsData } from "app/reducers/getPokemonsData";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Pokemon from "./Pokemon";
-import PokemonCardGrid from "../components/PokemonCardGrid";
-import { debounce } from "../utils/Debounce";
-import Loader from "../components/Loader";
-import { setLoading } from "../app/slices/AppSlice";
+import PokemonCardGrid from "components/PokemonCardGrid";
+import { debounce } from "utils/Debounce";
+import Loader from "components/Loader";
+import { setLoading } from "app/slices/AppSlice";
 
 function Search() {
   const dispatch = useAppDispatch();

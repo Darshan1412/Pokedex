@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { pokemonStatsType, pokemonTypeInterface, userPokemonsType } from "../../utils/Types";
-import { RootState } from "../store";
-import { setToast } from "../slices/AppSlice";
+import { pokemonStatsType, pokemonTypeInterface, userPokemonsType } from "utils/Types";
+import { RootState } from "app/store";
+import { setToast } from "app/slices/AppSlice";
 import { resolveTypeReferenceDirective } from "typescript";
 import { addDoc } from "firebase/firestore";
-import { pokemonListRef } from "../../utils/firebaseConfig";
-import { pokemonAPI } from "../../utils/Constants";
-import { getUserPokemons } from "./getUserPokemons";
+import { pokemonListRef } from "utils/firebaseConfig";
+import { pokemonAPI } from "utils/Constants";
+import { getUserPokemons } from "app/reducers/getUserPokemons";
 
 export const addPokemonToList = createAsyncThunk("pokemon/addPoekmon",
     async (pokemon:{

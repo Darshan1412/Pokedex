@@ -1,6 +1,6 @@
 import React from "react";
-import pikachuLoader from "../assets/pikachu-loader.gif";
-import pikaLoader from "../assets/pika-loader.gif";
+import pikachuLoader from "assets/pikachu-loader.gif";
+import pikaLoader from "assets/pika-loader.gif";
 function Loader() {
   return (
     <div className="loader">

@@ -1,10 +1,10 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { MdOutlinePowerSettingsNew } from "react-icons/md";
-import { firebaseAuth } from "../utils/firebaseConfig";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { setPokemonTab, setToast, setUserStatus } from "../app/slices/AppSlice";
-import { pokemonTabs } from "../utils/Constants";
+import { firebaseAuth } from "utils/firebaseConfig";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { setPokemonTab, setToast, setUserStatus } from "app/slices/AppSlice";
+import { pokemonTabs } from "utils/Constants";
 import { useLocation } from "react-router-dom";
 
 function Footer() {

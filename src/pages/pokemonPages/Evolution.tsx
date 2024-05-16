@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { getPokemonsData } from "../../app/reducers/getPokemonsData";
-import PokemonCardGrid from "../../components/PokemonCardGrid";
-import Loader from "../../components/Loader";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { getPokemonsData } from "app/reducers/getPokemonsData";
+import PokemonCardGrid from "components/PokemonCardGrid";
+import Loader from "components/Loader";
 
 function Evolution() {
   const dispatch = useAppDispatch();

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { IoGitCompare } from "react-icons/io5";
 import { FaAngleLeft, FaAngleRight, FaArrowLeft, FaArrowRight, FaPlus, FaTrash } from "react-icons/fa";
-import { pokemonTypeInterface, userPokemonsType } from "../utils/Types";
+import { pokemonTypeInterface, userPokemonsType } from "utils/Types";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../app/hooks";
-import { addToCompare, setCurrentPokemon } from "../app/slices/PokemonSlice";
-import { setPokemonTab, setToast } from "../app/slices/AppSlice";
-import { removePokemon } from "../app/reducers/removePokemonFromUserList";
-import { addPokemonToList } from "../app/reducers/addPokemonToList";
-import { pokemonTabs } from "../utils/Constants";
+import { useAppDispatch } from "app/hooks";
+import { addToCompare, setCurrentPokemon } from "app/slices/PokemonSlice";
+import { setPokemonTab, setToast } from "app/slices/AppSlice";
+import { removePokemon } from "app/reducers//removePokemonFromUserList";
+import { addPokemonToList } from "app/reducers//addPokemonToList";
+import { pokemonTabs } from "utils/Constants";
 
 function PokemonCard({ data }: { data: userPokemonsType }) {
   const dispatch = useAppDispatch();

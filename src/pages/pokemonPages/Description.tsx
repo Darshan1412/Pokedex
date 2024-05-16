@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useAppSelector } from "../../app/hooks";
-import PokemonContainer from "../../components/PokemonContainer";
-import Info from "../../components/Info";
+import { useAppSelector } from "app/hooks";
+import PokemonContainer from "components/PokemonContainer";
+import Info from "components/Info";
 import { extractColors } from "extract-colors";
 import { FaAngleRight } from "react-icons/fa";
 

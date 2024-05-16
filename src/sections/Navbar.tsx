@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import pokeballIcon from "../assets/pokeball-icon.png";
+import pokeballIcon from "assets/pokeball-icon.png";
 import {GiHamburgerMenu} from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
 
@@ -67,7 +67,7 @@ function Navbar() {
         </ul>
     </div>
     <div className="block">
-        <GiHamburgerMenu />    
+        {/* <GiHamburgerMenu />     */}
     </div> 
   </nav> 
   );

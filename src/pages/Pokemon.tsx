@@ -1,19 +1,19 @@
 
 
 import React, { useEffect, useCallback, useState } from "react";
-import Wrapper from "../sections/Wrapper";
+import Wrapper from "sections/Wrapper";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "app/hooks";
 import axios from "axios";
-import { pokemonRoute, pokemonSpeciesRoute, pokemonTabs } from "../utils/Constants";
-// import { defaultImages, images } from "../utils/getPokemonImages";
+import { pokemonRoute, pokemonSpeciesRoute, pokemonTabs } from "utils/Constants";
+// import { defaultImages, images } from "utils/getPokemonImages";
 import { extractColors } from "extract-colors";
 import Description from "./pokemonPages/Description";
 import Evolution from "./pokemonPages/Evolution";
 import CapableMoves from "./pokemonPages/CapableMoves";
 import Locations from "./pokemonPages/Locations";
-import { setCurrentPokemon } from "../app/slices/PokemonSlice";
-import Loader from "../components/Loader";
+import { setCurrentPokemon } from "app/slices/PokemonSlice";
+import Loader from "components/Loader";
 
 function Pokemon() {
   const params = useParams();

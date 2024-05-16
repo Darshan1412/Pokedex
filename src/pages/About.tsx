@@ -1,6 +1,6 @@
 import React from 'react'
-import Wrapper from '../sections/Wrapper';
-import avatarImage from "../assets/ProfOak.png"
+import Wrapper from 'sections/Wrapper';
+import avatarImage from "assets/ProfOak.png"
 import { FaGithub, FaLinkedin, FaLinkedinIn } from 'react-icons/fa';
 
 function About() {

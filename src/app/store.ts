@@ -1,8 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import App from '../App';
-import { AppSlice } from './slices/AppSlice';
-import { PokemonSlice } from './slices/PokemonSlice';
+import App from 'App';
+import { AppSlice } from 'app/slices/AppSlice';
+import { PokemonSlice } from 'app/slices/PokemonSlice';
 
 
 export const store = configureStore({

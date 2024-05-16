@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { pokemonsRoute } from "../../utils/Constants";
+import { pokemonsRoute } from "utils/Constants";
 
 export const getInitialPokemonData = createAsyncThunk("pokemon/initialData", async () => { 
     try {

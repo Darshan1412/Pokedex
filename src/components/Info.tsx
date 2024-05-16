@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { pokemonTypes } from "../utils/getPokemonTypes";
-import { useAppDispatch } from "../app/hooks";
-import { addPokemonToList } from "../app/reducers/addPokemonToList";
-import { setPokemonTab } from "../app/slices/AppSlice";
-import { pokemonTabs } from "../utils/Constants";
-import { currentPokemonType, pokemonStatsType } from "../utils/Types";
+import { pokemonTypes } from "utils/getPokemonTypes";
+import { useAppDispatch } from "app/hooks";
+import { addPokemonToList } from "app/reducers//addPokemonToList";
+import { setPokemonTab } from "app/slices/AppSlice";
+import { pokemonTabs } from "utils/Constants";
+import { currentPokemonType, pokemonStatsType } from "utils/Types";
 
 export default function Info({
   data,

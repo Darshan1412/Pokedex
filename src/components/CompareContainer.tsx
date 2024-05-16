@@ -3,14 +3,14 @@ import {
   pokemonTypeInterface,
   userPokemonsType,
   pokemonStatType,
-} from "../utils/Types";
-import { pokemonTypes } from "../utils/getPokemonTypes";
+} from "utils/Types";
+import { pokemonTypes } from "utils/getPokemonTypes";
 import { FaPlus } from "react-icons/fa";
-import { useAppDispatch } from "../app/hooks";
-import { removeFromCompare } from "../app/slices/PokemonSlice";
+import { useAppDispatch } from "app/hooks";
+import { removeFromCompare } from "app/slices/PokemonSlice";
 import { Navigate, useNavigate } from "react-router-dom";
-import { addPokemonToList } from "../app/reducers/addPokemonToList";
-import { setToast } from "../app/slices/AppSlice";
+import { addPokemonToList } from "app/reducers//addPokemonToList";
+import { setToast } from "app/slices/AppSlice";
 
 function CompareContainer({
   pokemon,

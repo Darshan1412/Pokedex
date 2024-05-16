@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppTypeInitialState } from "../../utils/Types";
-import { pokemonTabs } from "../../utils/Constants";
+import { AppTypeInitialState } from "utils/Types";
+import { pokemonTabs } from "utils/Constants";
 
 const initialState: AppTypeInitialState = {
     toasts: [],
