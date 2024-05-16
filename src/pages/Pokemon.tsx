@@ -8,7 +8,7 @@ import axios from "axios";
 import { pokemonRoute, pokemonSpeciesRoute, pokemonTabs } from "../utils/Constants";
 // import { defaultImages, images } from "../utils/getPokemonImages";
 import { extractColors } from "extract-colors";
-import Descripition from "./pokemonPages/Descripition";
+import Description from "./pokemonPages/Description";
 import Evolution from "./pokemonPages/Evolution";
 import CapableMoves from "./pokemonPages/CapableMoves";
 import Locations from "./pokemonPages/Locations";
@@ -194,7 +194,7 @@ function Pokemon() {
     <>
       {!isDataLoading && currentPokemon ? (
         <>
-          {currentPokemonTab === pokemonTabs.description && <Descripition />}
+          {currentPokemonTab === pokemonTabs.description && <Description />}
           {currentPokemonTab === pokemonTabs.evolution && <Evolution />}
           {currentPokemonTab === pokemonTabs.locations && <Locations />}
           {currentPokemonTab === pokemonTabs.moves && <CapableMoves />}

@@ -39,4 +39,17 @@
             transform: rotate(45deg);
         }
     }
+    .angleLeft,
+      .angleRight {
+        font-size: 1.8rem;
+        color: white;
+        margin: 1rem;
+        cursor: pointer;
+        margin-top: 11rem;
+        // margin-bottom: 4rem;
+        transition: font-size 0.3s ease-in-out;
+        &:hover {
+          font-size: 2.5rem;
+        }
+      }
 }
