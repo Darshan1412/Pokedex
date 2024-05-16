@@ -76,7 +76,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route element={<Search />} path="/search" />
-            <Route element={<Favorites />} path="/list" />
+            <Route element={<Favorites />} path="/Favorites" />
             <Route element={<About />} path="/about" />
             <Route element={<Compare />} path="/compare" />
             <Route element={<PokemonPage />} path="/pokemon/:id" />
