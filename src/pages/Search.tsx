@@ -87,15 +87,18 @@ function Search() {
       if (allPokemon) {
         const clonedPokemons = [...allPokemon];
         const randomPokemonsId = clonedPokemons
-          .filter(pokemon => 
-            !(pokemon.name.toLowerCase().includes("-mega") || pokemon.name.toLowerCase().includes("-gmax") || pokemon.name.toLowerCase().includes("-"))
-          )
+          .filter(pokemon => {
+            const nameParts = pokemon.name.split("-");
+            const baseName = nameParts[0].trim();
+            return !(baseName.toLowerCase().includes("mega") || baseName.toLowerCase().includes("gmax"));
+          })
           .sort(() => Math.random() - Math.random())
           .slice(0, 30);
         dispatch(setLoading(true));
         dispatch(getPokemonsData(randomPokemonsId));
       }
     }
+    
   }
   
   return (
