@@ -2,6 +2,7 @@
     width: 100vw;
     height: 80vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     @media (max-width: 768px) {
         overflow-x: hidden;
        }
@@ -21,6 +22,7 @@
         padding: 1rem;
         width: 100vw;
         overflow-y: scroll;
+        overflow-x: hidden;
         // height: 80vh;
         @media (max-width: 768px) {
             grid-template-columns: none;

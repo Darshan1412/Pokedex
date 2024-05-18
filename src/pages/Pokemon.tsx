@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useCallback, useState } from "react";
 import Wrapper from "sections/Wrapper";
 import { useParams } from "react-router-dom";
@@ -61,91 +59,102 @@ function Pokemon() {
     },
     [getRecursiveEvolution]
   );
+
   const [isDataLoading, setIsDataLoading] = useState(true);
+
   const getPokemonInfo = useCallback(
     async (image: string) => {
-      const { data } = await axios.get(`${pokemonRoute}/${params.id}`);
-      const { data: dataEncounters } = await axios.get(
-        data.location_area_encounters
-      );
-      const {
-        data: {
-          evolution_chain: { url: evolutionURL },
-        },
-      } = await axios.get(`${pokemonSpeciesRoute}/${data.id}`);
-      const { data: evolutionData } = await axios.get(evolutionURL);
-
-      const encounters: string[] = [];
-      dataEncounters.forEach((encounter: any) => {
-        encounters.push(
-          encounter.location_area.name.toUpperCase().split("-").join(" ")
+      try {
+        const { data } = await axios.get(`${pokemonRoute}/${params.id}`);
+        const { data: dataEncounters } = await axios.get(
+          data.location_area_encounters
         );
-      });
-      console.log({ data });
-      const pokemonAbilities: { abilities: string[]; moves: string[] } = {
-        abilities: data.abilities.map(
-          ({ ability }: { ability: { name: string } }) => ability.name
-        ),
-        moves: data.moves.map(
-          ({ move }: { move: { name: string } }) => move.name
-        ),
-      };
-      const evolution = getEvolutionData(evolutionData.chain);
-      const evolutionLevel = evolution.find(
-        ({ pokemon }) => pokemon.name === data.name
-    )?.level;
-      // console.log({
-      //   id: data.id,
-      //   name: data.name,
-      //   types: data.types.map(
-      //     ({ type: { name } }: { type: { name: string } }) => name
-      //   ),
-      //   image,
-      //   stats: data.stats.map(
-      //     ({
-      //       stat,
-      //       base_stat,
-      //     }: {
-      //       stat: { name: string };
-      //       base_stat: number;
-      //     }) => ({
-      //       name: stat.name,
-      //       value: base_stat,
-      //     })
-      //   ),
-      //   encounters,
-      //   evolutionLevel,
-      //   evolution,
-      //   pokemonAbilities,
-      // });
-      dispatch(setCurrentPokemon({
-        id: data.id,
-        name: data.name,
-        types: data.types.map(
-          ({ type: { name } }: { type: { name: string } }) => name
-        ),
-        image,
-        stats: data.stats.map(
-          ({
-            stat,
-            base_stat,
-          }: {
-            stat: { name: string };
-            base_stat: number;
-          }) => ({
-            name: stat.name,
-            value: base_stat,
+        
+        const basePokemonName = data.name.split("-")[0];
+
+        const {
+          data: {
+            evolution_chain: { url: evolutionURL },
+          },
+        } = await axios.get(`${pokemonSpeciesRoute}/${basePokemonName}`);
+
+        const { data: evolutionData } = await axios.get(evolutionURL);
+
+        const encounters: string[] = [];
+        dataEncounters.forEach((encounter: any) => {
+          encounters.push(
+            encounter.location_area.name.toUpperCase().split("-").join(" ")
+          );
+        });
+
+        const pokemonAbilities: { abilities: string[]; moves: string[] } = {
+          abilities: data.abilities.map(
+            ({ ability }: { ability: { name: string } }) => ability.name
+          ),
+          moves: data.moves.map(
+            ({ move }: { move: { name: string } }) => move.name
+          ),
+        };
+        const evolution = getEvolutionData(evolutionData.chain);
+        const evolutionLevel = evolution.find(
+          ({ pokemon }) => pokemon.name === basePokemonName
+        )?.level;
+        // console.log({
+        //   id: data.id,
+        //   name: data.name,
+        //   types: data.types.map(
+        //     ({ type: { name } }: { type: { name: string } }) => name
+        //   ),
+        //   image,
+        //   stats: data.stats.map(
+        //     ({
+        //       stat,
+        //       base_stat,
+        //     }: {
+        //       stat: { name: string };
+        //       base_stat: number;
+        //     }) => ({
+        //       name: stat.name,
+        //       value: base_stat,
+        //     })
+        //   ),
+        //   encounters,
+        //   evolutionLevel,
+        //   evolution,
+        //   pokemonAbilities,
+        // });
+        dispatch(
+          setCurrentPokemon({
+            id: data.id,
+            name: data.name,
+            types: data.types.map(
+              ({ type: { name } }: { type: { name: string } }) => name
+            ),
+            image,
+            stats: data.stats.map(
+              ({
+                stat,
+                base_stat,
+              }: {
+                stat: { name: string };
+                base_stat: number;
+              }) => ({
+                name: stat.name,
+                value: base_stat,
+              })
+            ),
+            encounters,
+            evolutionLevel,
+            evolution,
+            pokemonAbilities,
           })
-        ),
-        encounters,
-        evolutionLevel,
-        evolution,
-        pokemonAbilities,
-      })
-    );
-    setIsDataLoading(false);
+        );
+        setIsDataLoading(false);
+      } catch (error) {
+        console.error("Error fetching Pokemon data:", error);
+      }
     },
-    [getEvolutionData, params.id, dispatch]
+    [getEvolutionData, params.id, params.name, dispatch]
   );
 
   useEffect(() => {
@@ -153,43 +162,47 @@ function Pokemon() {
       try {
         const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${params.id}.png`;
         const response = await axios.get(image, {
-          responseType: 'blob',
+          responseType: "blob",
         });
         const imageBlob = response.data;
         const imageObject = URL.createObjectURL(imageBlob);
-    
-        const imageElement = document.createElement('img');
+
+        const imageElement = document.createElement("img");
         imageElement.src = imageObject;
-    
+
         const options = {
           pixels: 10000,
           distance: 1,
           splitPower: 10,
-          colorValidator: (red: number, green: number, blue: number, alpha = 255) =>
-            alpha > 250,
+          colorValidator: (
+            red: number,
+            green: number,
+            blue: number,
+            alpha = 255
+          ) => alpha > 250,
           saturationDistance: 0.2,
           lightnessDistance: 0.2,
           hueDistance: 0.083333333,
         };
-    
+
         const getColor = async () => {
           const color = await extractColors(imageElement.src, options);
           const root = document.documentElement;
-          root.style.setProperty('--accent-color', color[0].hex.split('"')[0]);
+          root.style.setProperty("--accent-color", color[0].hex.split('"')[0]);
         };
-    
+
         imageElement.onload = () => {
           getColor();
           getPokemonInfo(imageElement.src);
         };
       } catch (error) {
-        console.error('Error fetching Pokemon image:', error);
+        console.error("Error fetching Pokemon image:", error);
       }
     };
-    
-  
+
     getImage();
   }, [params, getPokemonInfo]);
+
   return (
     <>
       {!isDataLoading && currentPokemon ? (

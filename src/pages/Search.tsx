@@ -65,6 +65,14 @@ function Search() {
         randomPokemonsId = clonedPokemons.slice(905, 1025);
       } else {
         randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 30);
+        // randomPokemonsId = clonedPokemons
+        //   .filter(pokemon => {
+        //     const nameParts = pokemon.name.split("-");
+        //     const baseName = nameParts[0].trim();
+        //     return !(baseName.toLowerCase().includes("-mega") || baseName.toLowerCase().includes("-gmax")|| baseName.toLowerCase().includes("-"));
+        //   })
+        //   .sort(() => Math.random() - Math.random())
+        //   .slice(0, 30);
       }
 
       dispatch(getPokemonsData(randomPokemonsId));
@@ -74,31 +82,43 @@ function Search() {
   const handleChange = debounce((value:string) => getPokemons(value), 300);
   // const handleChange = (value: string) => getPokemons(value);
 
+  // const getPokemons = async (value: string) => {
+  //   if (value.length) {
+  //     const pokemons = allPokemon?.filter((pokemon) =>
+  //       pokemon.name.includes(value.toLowerCase()) &&
+  //       !(pokemon.name.toLowerCase().includes("-mega") || pokemon.name.toLowerCase().includes("-gmax"))
+  //     );
+  //     if (pokemons) {
+  //       dispatch(getPokemonsData(pokemons));
+  //     }
+  //   } else {
+  //     if (allPokemon) {
+  //       const clonedPokemons = [...allPokemon];
+  //       const randomPokemonsId = clonedPokemons
+  //         .filter(pokemon => 
+  //           !(pokemon.name.toLowerCase().includes("-mega") || pokemon.name.toLowerCase().includes("-gmax") )
+  //         )
+  //         .sort(() => Math.random() - Math.random())
+  //         .slice(0, 30);
+  //       dispatch(setLoading(true));
+  //       dispatch(getPokemonsData(randomPokemonsId));
+  //     }
+  //   }
+  // }
+
   const getPokemons = async (value: string) => {
     if (value.length) {
       const pokemons = allPokemon?.filter((pokemon) =>
-        pokemon.name.includes(value.toLowerCase()) &&
-        !(pokemon.name.toLowerCase().includes("-mega") || pokemon.name.toLowerCase().includes("-gmax") || pokemon.name.toLowerCase().includes("-"))
+        pokemon.name.includes(value.toLowerCase())
       );
-      if (pokemons) {
-        dispatch(getPokemonsData(pokemons));
-      }
+      dispatch(getPokemonsData(pokemons!));
     } else {
-      if (allPokemon) {
-        const clonedPokemons = [...allPokemon];
-        const randomPokemonsId = clonedPokemons
-          .filter(pokemon => {
-            const nameParts = pokemon.name.split("-");
-            const baseName = nameParts[0].trim();
-            return !(baseName.toLowerCase().includes("mega") || baseName.toLowerCase().includes("gmax"));
-          })
-          .sort(() => Math.random() - Math.random())
-          .slice(0, 30);
-        dispatch(setLoading(true));
-        dispatch(getPokemonsData(randomPokemonsId));
-      }
+      const clonedPokemons = [...(allPokemon as [])];
+      // const randomPokemonsId = clonedPokemons.slice(0, 40);
+      dispatch(setLoading(true));
+      const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 30);
+      dispatch(getPokemonsData(randomPokemonsId));
     }
-    
   }
   
   return (
