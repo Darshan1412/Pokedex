@@ -5,4 +5,9 @@
   width: 100%;
   gap: 1rem;
   padding: 1rem;
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: none;
+    overflow-y: scroll;
+  }
 }

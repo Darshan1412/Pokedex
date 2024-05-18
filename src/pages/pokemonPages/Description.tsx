@@ -85,10 +85,10 @@ function Description() {
   }, [currentImage]);
 
   return (
+    <>
     <div className="image-transition-container">
       {pokemonData && (
         <>
-          <Info data={pokemonData} />
           <PokemonContainer
             image={currentImage}
             onPrevClick={handlePrevImage}
@@ -98,6 +98,8 @@ function Description() {
         </>
       )}
     </div>
+      <Info data={pokemonData} />
+    </>
   );
 }
 

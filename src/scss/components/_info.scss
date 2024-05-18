@@ -6,6 +6,9 @@
     padding: 1rem;
     width: 25rem;
     text-transform: uppercase;
+    @media (max-width: 768px) {
+      width: 90vw;
+  }
     &::before {
       height: 0.3rem;
       width: 9rem;
@@ -43,11 +46,20 @@
     position: absolute;
     left: 1rem;
     bottom: 8rem;
+    @media (max-width: 768px) {
+      position: relative;
+     margin-top: 20vh;
+     left: 0;
+     margin-right: 1.3rem;
+  }
     ul {
       list-style-type: none;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+    //   @media (max-width: 768px) {
+    //     margin-top: 120vh;
+    //  }
       li {
         color: white;
         text-align: right;
@@ -57,6 +69,9 @@
         justify-content: flex-end;
         align-items: center;
         gap: 1rem;
+        @media (max-width: 768px) {
+          font-size: 0.85rem;
+      }
         progress {
           transition: 2s ease-in-out;
           width: 0;
@@ -78,6 +93,15 @@
   }
   
   .battle-stats {
+    @media (max-width: 768px) {
+      width: 90vw;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 2.8rem;
+    //  margin-right: 1.3rem;
+  }
     ul {
       list-style-type: none;
       display: flex;
@@ -88,6 +112,9 @@
         display: grid;
         grid-template-columns: max-content 80%;
         gap: 0.5rem;
+        @media (max-width: 768px) {
+          font-size: 0.8rem;
+      }
       }
     }
     position: absolute;

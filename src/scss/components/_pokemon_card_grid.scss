@@ -1,5 +1,6 @@
 .pokemon-card-grid-container {
   max-height: 80vh;
+  max-width: 100vw;
   overflow-y: scroll;
   color: white;
   text-transform: uppercase;
@@ -12,6 +13,12 @@
   margin: 4rem;
   margin-top: 2rem;
   padding-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    margin: 2rem 1rem;
+    gap: 2rem;
+  }
+
   .pokemon-card {
     width: 250px;
     display: flex;
@@ -23,36 +30,50 @@
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     position: relative;
+    margin: auto; 
+
+    // @media (max-width: 480px) {
+    //   width: 90%;
+    //   padding: 0.5rem;
+    // }
+
     svg {
       transition: 0.3s ease-in-out;
+
       &:hover {
         font-size: 2rem;
       }
     }
+
     &-list {
       position: absolute;
       top: 0.7rem;
       left: 0.8rem;
       font-size: 1rem;
       cursor: pointer;
+
       .trash {
         color: #e21b5a;
       }
+
       .plus {
         color: #27af0f;
       }
     }
+
     &-compare {
       position: absolute;
       top: 0.5rem;
       right: 0.8rem;
       font-size: 1.3rem;
       cursor: pointer;
+
       svg {
         color: #1f51ff;
       }
     }
-    .image-toggle{
+
+    .image-toggle {
       .angleLeft,
       .angleRight {
         font-size: 1.5rem;
@@ -60,20 +81,31 @@
         cursor: pointer;
         margin-bottom: 4rem;
         transition: font-size 0.3s ease-in-out;
+
         &:hover {
           font-size: 2rem;
         }
       }
     }
+
     &-title {
       text-align: center;
       cursor: pointer;
       margin-top: 1rem;
+
+      @media (max-width: 480px) {
+        font-size: 1.2rem;
+      }
     }
+
     &-image {
       height: 10rem;
       filter: drop-shadow(20px 10px 10px #14121281);
       cursor: pointer;
+
+      @media (max-width: 480px) {
+        height: 8rem;
+      }
     }
 
     &-types {
@@ -81,6 +113,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
       gap: 1rem;
+
       &-type {
         display: flex;
         flex-direction: column;
@@ -88,13 +121,24 @@
         align-items: center;
         margin-top: 0.5rem;
         gap: 0.4rem;
+
         &-image {
           height: 2rem;
+
+          @media (max-width: 480px) {
+            height: 1.5rem;
+          }
         }
+
         &-text {
           font-size: smaller;
+
+          @media (max-width: 480px) {
+            font-size: 0.8rem;
+          }
         }
       }
     }
   }
 }
+

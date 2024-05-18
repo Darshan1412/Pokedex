@@ -1,7 +1,10 @@
 .pokemon-moves{
-    width: 100%;
+    width: 100vw;
     height: 80vh;
     overflow-y: scroll;
+    @media (max-width: 768px) {
+        overflow-x: hidden;
+       }
     .pokemon-moves-title{
         color: white;
         text-transform: uppercase;
@@ -16,9 +19,13 @@
         grid-auto-rows: 150px;
         gap: 1rem;
         padding: 1rem;
-        width: 100%;
+        width: 100vw;
         overflow-y: scroll;
         // height: 80vh;
+        @media (max-width: 768px) {
+            grid-template-columns: none;
+            overflow-x: hidden;
+           }
         .pokemon-move{
             height: 100%;
             padding: 2rem;

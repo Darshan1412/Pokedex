@@ -6,4 +6,11 @@
     // mix-blend-mode:multiply;
     // filter: contrast(1);
     // background-color: black;
+     @media (max-width: 768px) {
+        max-width: 100vw;
+        img{
+            width: 60%;
+            // height: 50%;
+        }
+       }
 }

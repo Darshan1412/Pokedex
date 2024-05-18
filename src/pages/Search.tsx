@@ -77,47 +77,81 @@ function Search() {
   const getPokemons = async (value: string) => {
     if (value.length) {
       const pokemons = allPokemon?.filter((pokemon) =>
-        pokemon.name.includes(value.toLowerCase())
+        pokemon.name.includes(value.toLowerCase()) &&
+        !(pokemon.name.toLowerCase().includes("-mega") || pokemon.name.toLowerCase().includes("-gmax") || pokemon.name.toLowerCase().includes("-"))
       );
-      dispatch(getPokemonsData(pokemons!));
+      if (pokemons) {
+        dispatch(getPokemonsData(pokemons));
+      }
     } else {
-      const clonedPokemons = [...(allPokemon as [])];
-      // const randomPokemonsId = clonedPokemons.slice(0, 40);
-      dispatch(setLoading(true));
-      const randomPokemonsId = clonedPokemons.sort(() => Math.random() - Math.random()).slice(0, 30);
-      dispatch(getPokemonsData(randomPokemonsId));
+      if (allPokemon) {
+        const clonedPokemons = [...allPokemon];
+        const randomPokemonsId = clonedPokemons
+          .filter(pokemon => 
+            !(pokemon.name.toLowerCase().includes("-mega") || pokemon.name.toLowerCase().includes("-gmax") || pokemon.name.toLowerCase().includes("-"))
+          )
+          .sort(() => Math.random() - Math.random())
+          .slice(0, 30);
+        dispatch(setLoading(true));
+        dispatch(getPokemonsData(randomPokemonsId));
+      }
     }
   }
-  return <>
-  {isLoading ? (
+  
+  return (
+    <>
+      {isLoading ? (
         <Loader />
       ) : (
-    <div className="search">
-      <input type="text"
-        className="pokemon-searchbar"
-        placeholder="Search Pokemon"
-        onChange={(e) => handleChange(e.target.value)}
-      />
-      <select
-        className="generation-dropdown"
-        value={generation}
-        onChange={(e) => setGeneration(e.target.value)}
-      >
-        <option value="All">Filter by Generation</option>
-        <option value="Gen1">Gen 1 (Kanto Region)</option>
-        <option value="Gen2">Gen 2 (Johto Region)</option>
-        <option value="Gen3">Gen 3 (Hoenn Region)</option>
-        <option value="Gen4">Gen 4 (Sinnoh Region)</option>
-        <option value="Gen5">Gen 5 (Unova Region)</option>
-        <option value="Gen6">Gen 6 (Kalos Region)</option>
-        <option value="Gen7">Gen 7 (Alola Region)</option>
-        <option value="Gen8">Gen 8 (Galar Region)</option>
-        <option value="Gen9">Gen 9 (Paldea Region)</option>
-      </select>
-      <PokemonCardGrid pokemons={randomPokemons!} />
-    </div>
+        <div className="search">
+          <input
+            type="text"
+            className="pokemon-searchbar"
+            placeholder="Search Pokemon"
+            onChange={(e) => handleChange(e.target.value)}
+          />
+          {window.innerWidth <= 768 && (
+            <select
+              className="generation-dropdown"
+              value={generation}
+              onChange={(e) => setGeneration(e.target.value)}
+            >
+            <option value="All">Filter by Gen</option>
+              <option value="Gen1">Gen 1 </option>
+              <option value="Gen2">Gen 2 </option>
+              <option value="Gen3">Gen 3 </option>
+              <option value="Gen4">Gen 4 </option>
+              <option value="Gen5">Gen 5 </option>
+              <option value="Gen6">Gen 6 </option>
+              <option value="Gen7">Gen 7 </option>
+              <option value="Gen8">Gen 8 </option>
+              <option value="Gen9">Gen 9 </option>
+            </select>
+          )}
+          {window.innerWidth > 768 && (
+            <select
+              className="generation-dropdown"
+              value={generation}
+              onChange={(e) => setGeneration(e.target.value)}
+            >
+              <option value="All">Filter by Generation</option>
+              <option value="Gen1">Gen 1 (Kanto Region)</option>
+              <option value="Gen2">Gen 2 (Johto Region)</option>
+              <option value="Gen3">Gen 3 (Hoenn Region)</option>
+              <option value="Gen4">Gen 4 (Sinnoh Region)</option>
+              <option value="Gen5">Gen 5 (Unova Region)</option>
+              <option value="Gen6">Gen 6 (Kalos Region)</option>
+              <option value="Gen7">Gen 7 (Alola Region)</option>
+              <option value="Gen8">Gen 8 (Galar Region)</option>
+              <option value="Gen9">Gen 9 (Paldea Region)</option>
+            </select>
+          )}
+          <PokemonCardGrid pokemons={randomPokemons!} />
+        </div>
       )}
-  </>
+    </>
+  );
+  
 }
 
 export default Wrapper(Search);

@@ -1,35 +1,53 @@
-.main-container{
+.main-container {
     position: relative;
     max-width: 100vw;
-    overflow:hidden;
+    overflow: hidden;
     height: 100vh;
 }
-.app{
+
+.app {
     z-index: 1;
-    background:rgba(4,6,20,0.85);
-    height:100vh ;
+    background: rgba(4, 6, 20, 0.85);
+    height: 100vh;
     width: 100vw;
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
-    border: 1px solid rgba(23,20,20,0.37);
+    border: 1px solid rgba(23, 20, 20, 0.37);
     display: grid;
     grid-template-rows: 10vh auto 10vh;
-    grid-template-columns: 1fr ;
-    .content{
+    grid-template-columns: 1fr;
+
+    .content {
         margin: 0 5rem;
-        border: 0.5px solid rgba(255,255,255,0.203);
+        border: 0.5px solid rgba(255, 255, 255, 0.203);
         border-top: none;
         border-bottom: none;
-        background-color: rgba(255,255,255,0.052);
+        background-color: rgba(255, 255, 255, 0.052);
         overflow: hidden;
         position: relative;
-    };
+    }
 }
 
-::-webkit-scrollbar{
-    background-color:transparent;
+::-webkit-scrollbar {
+    background-color: transparent;
     width: 0.4rem;
-    &-thumb{
-        background-color: rgba(219,219,219,0.557);
+
+    &-thumb {
+        background-color: rgba(219, 219, 219, 0.557);
+    }
+}
+@media (min-width: 320px) {
+    .app {
+        .content {
+            width: 100vw;
+            height: 80vh;
+            margin: 0;
+            border: none;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+        .content::-webkit-scrollbar {
+            display: none;
+          }
     }
 }
