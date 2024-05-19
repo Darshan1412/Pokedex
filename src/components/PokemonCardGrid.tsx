@@ -41,15 +41,7 @@ function PokemonCard({ data }: { data: userPokemonsType }) {
     }
   };
   return (
-    <div
-      className="pokemon-card"
-      key={data.id}
-      onClick={() => {
-        dispatch(setPokemonTab(pokemonTabs.description));
-        dispatch(setCurrentPokemon(undefined));
-        navigate(`/pokemon/${data.id}`);
-      }}
-    >
+    <div className="pokemon-card" key={data.id}>
       <div className="pokemon-card-list">
         {location.pathname.includes("/pokemon") ||
         location.pathname.includes("/search") ? (
