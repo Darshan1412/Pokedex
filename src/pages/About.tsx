@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedin, FaLinkedinIn } from 'react-icons/fa';
 function About() {
   return <div className='profile'>
     <img src={avatarImage} alt="avatar" className='profile-image' />
-    <h1 className="profile-text">Hi I am Professor Oak</h1>
+    <h1 className="profile-text">Hi I am Darshan Jain</h1>
     <h2 className="profile-text">The creator of the Pokedex</h2>
   
     <div className="profile-links">

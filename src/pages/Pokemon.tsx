@@ -179,11 +179,24 @@ function Pokemon() {
             green: number,
             blue: number,
             alpha = 255
-          ) => alpha > 250,
+          ) => {
+            // Ensure alpha is mostly opaque
+            if (alpha <= 250) return false;
+        
+            // Exclude white-like colors
+            const whiteThreshold = 240; // Adjust this threshold as needed
+            const minComponentThreshold = 200; // Minimum value for any component to be considered non-white
+        
+            if (red > whiteThreshold && green > whiteThreshold && blue > whiteThreshold) return false;
+            if (red > minComponentThreshold && green > minComponentThreshold && blue > minComponentThreshold) return false;
+        
+            return true;
+          },
           saturationDistance: 0.2,
           lightnessDistance: 0.2,
           hueDistance: 0.083333333,
         };
+        
 
         const getColor = async () => {
           const color = await extractColors(imageElement.src, options);
