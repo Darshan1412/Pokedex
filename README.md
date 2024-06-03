@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# Pokedex App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## About
+The Pokedex App is a fun and engaging project created by a Pokémon fan, for Pokémon fans. Inspired by the Pokédex from the Pokémon series, this fan-made application aims to provide a comprehensive, interactive experience for exploring and learning about Pokémon.
 
-## Available Scripts
+### What is a Pokédex?
+A Pokédex is an electronic device in the Pokémon series designed to catalog and provide information regarding the various species of Pokémon. Each entry includes detailed descriptions, stats, abilities, and other essential data about the Pokémon. Trainers use the Pokédex to learn more about the Pokémon they encounter, capture, and train.
 
-In the project directory, you can run:
+This Pokedex App brings that concept to life, offering an extensive database of Pokémon information from Generations 1-9.
 
-### `npm start`
+## Features
+- **Gen 1-9 Pokémon**: Access comprehensive data on Pokémon from Generations 1 through 9.
+- **Dynamic Website Using PokeAPI**: Fetch real-time Pokémon data from the PokeAPI.
+- **Search Functionality**: Easily search for any Pokémon by name or ID.
+- **Compare Pokémon**: Compare the stats and abilities of different Pokémon side-by-side.
+- **Detailed Information View**: View extensive details about each Pokémon, including stats, abilities, and evolution.
+- **Favorite Pokémon**: Mark and store your favorite Pokémon for quick access.
+- **Saved Sessions and Login**: Use Firebase for authentication and saving user sessions.
+- **Styled, Modern Responsive UI**: Enjoy a polished, responsive design for both desktop and mobile devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech Stack
+- **React**: For building the user interface.
+- **Redux & Redux Toolkit**: For state management.
+- **TypeScript**: For type safety and enhanced code quality.
+- **PokeAPI**: To fetch Pokémon data.
+- **Firebase**: For authentication and session management.
+- **SCSS**: For styling the application.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
+Follow these instructions to set up and run the project on your local machine.
 
-### `npm test`
+### Prerequisites
+Ensure you have the following installed:
+- Node.js
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
+1. **Clone the repository**
 
-### `npm run build`
+2. **Install Dependencies**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Set up Firebase**
+    - Create a project in Firebase.
+    - Enable authentication (Google).
+    - Create a Firestore database.
+    - Get your Firebase config object and add it to your environment variables.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Create a .env file in the root of the project and add your Firebase config:
 
-### `npm run eject`
+    ```env
+    REACT_APP_FIREBASE_API_KEY=your_api_key
+    REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+    REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+    REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+    REACT_APP_FIREBASE_APP_ID=your_app_id
+    REACT_APP_FIREBASE_MEASUREMENT_ID=your_measurement_id
+    ```
+4. **Installing Firebase Tools**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    To interact with Firebase services such as Firestore, you'll need to have `firebase-tools` installed globally. If you haven't already installed it, you can do so by running the following command in your terminal:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm install -g firebase-tools
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5. **Run the Application**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    ```bash
+    npm start
+    # or
+    yarn start
+    ```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+    The application will start on `http://localhost:3000`.
